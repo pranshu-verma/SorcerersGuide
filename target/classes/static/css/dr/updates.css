@@ -1,0 +1,38 @@
+.update {
+    margin: 8px;
+}
+
+.update-heading {
+    padding: 2px;
+    background-color: var(--updates-heading-background-color);
+}
+
+.update-active, .update-heading:hover {
+    background-color: var(--updates-heading-active-background-color);
+    color: white;
+    cursor: pointer;
+}
+
+.update-heading small {
+    margin: 0;
+    font-weight: bold;
+}
+
+.date small {
+    font-weight: normal;
+}
+
+.update-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+
+.update-body p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.search-form {
+    padding: 0 16px;
+}

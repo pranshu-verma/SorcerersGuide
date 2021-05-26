@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg indigo px-0 py-1" th:fragment="navigation">
+        <b><a class="navbar-brand nav-link" th:href="@{/}">SORCERER'S GUIDE</a></b>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-heading"
+            aria-controls="navbar-heading" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-heading">
+            <ul id="navbar-heading-ul" class="navbar-nav mr-auto">
+                <li class="nav-item px-2">
+                    <a id="heading-updates" th:class="${activePage == 'updates'} ? 'nav-link py-1 px-3 active' : 'nav-link py-1 px-3'" th:href="@{/dr/updates}">Updates</a>
+                </li>
+                <li class="nav-item px-2">
+                    <a id="heading-queries" th:class="${activePage == 'queries'} ? 'nav-link py-1 px-3 active' : 'nav-link py-1 px-3'" th:href="@{/dr/queries}">Queries</a>
+                </li>
+                <li class="nav-item px-2">
+                    <a id="heading-faqs" th:class="${activePage == 'faqs'} ? 'nav-link py-1 px-3 active' : 'nav-link py-1 px-3'" th:href="@{/dr/faqs}">FAQs</a>
+                </li>
+            </ul>
+            <span id="btn-toggle-theme" class="nav-icon">
+                <i class="fa fa-moon"></i>
+            </span>
+            <span class="navbar-text">
+                <small id="user-id-span"></small>
+            </span>
+            <span class="nav-link">
+                <form th:action="@{/logout}" method="POST">
+                    <button type="submit" name="logout" class="btn btn-sm btn-danger">Logout</button>
+                </form>
+            </span>
+        </div>
+    </nav>
+</body>
+
+</html>

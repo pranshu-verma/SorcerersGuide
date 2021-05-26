@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Updates - Sorcerer's Guide</title>
+    <link rel="icon" type="image/svg+xml" th:href="@{/icon/favicon.svg}">
+    <div th:replace="~{common :: header-imports}"></div>
+    <link rel="stylesheet" th:href="@{/css/dr/updates.css}">
+
+</head>
+
+<body>
+
+    <div th:replace="navigation :: navigation"></div>
+
+    <!-- Body -->
+    <div class="container mt-2">
+
+        <div class="row">
+            <div class="col-1"></div>
+
+            <div class="col-10">
+
+                <form action="" class="search-form" method="GET">
+                    <div class="row">
+                        <div class="col-10">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="query" placeholder="Search an update">
+                                <input type="hidden" name="currentPage" value="1">
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="form-group m-0 mt-2">
+                                <button type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row">
+                    <div class="col-6">
+                        Total results: [[${totalElements}]]
+                    </div>
+                    <div th:if="${totalPages > 1}" class="col-6 text-right">
+                        <span class="p-2" th:each="i : ${#numbers.sequence(1, totalPages)}">
+                            <a th:if="${currentPage != i}" th:href="@{/dr/updates(query=${query}, currentPage=${i})}">[[${i}]]</a>
+                            <span th:if="${currentPage == i}">[[${i}]]</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Updates section -->
+                <div id="updates" class="updates">
+
+                    <!-- Each update -->
+                    <div class="update" th:each="update : ${updates}">
+                        <div class="update-heading">
+                            <div class="row">
+                                <div class="col-10">
+                                    <small class="px-2 py-1">[[${update.heading}]]</small>
+                                </div>
+                                <div class="col-2 date">
+                                    <small>[[${update.updateDate}]]</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="update-body">
+                            <p class="p-3">[[${update.body}]]</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-1"></div>
+        </div>
+
+    </div>
+
+    <div th:replace="~{common :: footer-imports}"></div>
+    <script src="/js/dr/updates.js"></script>
+
+</body>
+
+</html>

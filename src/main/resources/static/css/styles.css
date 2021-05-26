@@ -1,0 +1,48 @@
+@font-face {
+    font-family: "Amazon Ember";
+    src: url("/fonts/AmazonEmber_Rg.ttf");
+}
+
+@font-face {
+    font-family: "Amazon Ember";
+    src: url("/fonts/AmazonEmber_Bd.ttf");
+    font-weight: bold;
+}
+
+/* 
+    Dark - https://colorhunt.co/palette/201882 
+    Light - https://colorhunt.co/palette/273496
+*/
+
+*, html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Amazon Ember";
+
+    /* Colors */
+    --background-color: white;
+    --color: black;
+    --nav-link-active-background-color: #fb3640;
+    --navbar-background-color: #ff7b54;
+    --navbar-link-hover-color: white;
+    --updates-heading-background-color: #ff7b54;
+    --updates-heading-color: white;
+    --updates-heading-active-background-color: #fb3640;
+
+    background-color: var(--background-color);
+    color: var(--color);
+}
+
+body.dark {
+    --background-color: #24252a;
+    --color: white;
+    --nav-link-active-background-color: #0088a9;
+    --navbar-background-color: #24252a;
+    --navbar-link-hover-color: #1538ff;
+    --updates-heading-background-color: #3654fc;
+    --updates-heading-color: white;
+    --updates-heading-active-background-color: #1538ff;
+}

@@ -1,0 +1,39 @@
+.login-form {
+    border: rgb(201, 201, 201) 1px solid;
+    border-radius: 8px;
+}
+
+.btn-login {
+    background-color: #f0c14b;
+    border-color: #a88734 #9c7e31 #846a29;
+    color: #111;
+    width: 100%;
+}
+
+#sign-in-logo {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.text-logout {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.nav-icon {
+    padding: 8px 16px;
+    margin: 4px;
+}
+
+.nav-icon:hover {
+    cursor: pointer;
+}
+
+input[type=text], input[type=password] {
+    background-color: var(--background-color);
+    color: var(--color);
+}

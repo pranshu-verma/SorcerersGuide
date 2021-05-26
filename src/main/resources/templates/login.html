@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/svg+xml" th:href="@{/icon/favicon.svg}">
+    <div th:replace="~{common :: header-imports}"></div>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <title>Login - Sorcerer's Guide</title>
+
+</head>
+
+<body>
+
+    <!-- Main -->
+    <div id="content">
+
+        <!-- Theme toggle button -->
+        <div class="text-right m-3">
+            <span id="btn-toggle-theme" class="nav-icon">
+                <i class="fa fa-moon"></i>
+            </span>
+        </div>
+
+        <div class="container">
+
+            <div class="row my-4">
+
+                <!-- Left -->
+                <div class="col-lg-4 col-md-3"></div>
+
+                <!-- Center -->
+                <div class="col-lg-4 col-md-6">
+
+                    <form th:action="@{/login}" class="login-form m-2 p-5" method="POST">
+                        <div th:if="${param.logout}" class="form-group text-logout">
+                            <small class="text-success">You have been logged out.</small>
+                        </div>
+                        <div class="sign-in-header text-center">
+                            <h2 class="mb-5">Sign-In</h2>
+                            <img id="sign-in-logo" src="images/amazon-logo.png" alt="Amazon Logo" width="100px">
+                        </div>
+                        <div class="form-group">
+                            <small for="username" class="text-left">Amazon alias</small>
+                            <input type="text" class="form-control mt-2" id="username" name="username"
+                                aria-describedby="login" placeholder="Enter Amazon login" required>
+                        </div>
+                        <div class="form-group">
+                            <small for="password" class="text-left">Password</small>
+                            <input type="password" class="form-control mt-2" id="password" name="password"
+                                aria-describedby="password" placeholder="Enter your password" required>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="remember-me">
+                            <label class="form-check-label" for="remember-me">Remember me</label>
+                        </div>
+                        <div th:if="${param.error}" class="form-group">
+                            <small class="text-danger">Invalid username or password.</small>
+                        </div>
+                        <button id="btn-login" type="submit" class="btn btn-login"><small>Sign-In</small></button>
+                    </form>
+
+                </div>
+
+                <!-- Right -->
+                <div class="col-lg-4 col-md-3"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div th:replace="~{common :: footer-imports}"></div>
+
+</body>
+
+</html>
