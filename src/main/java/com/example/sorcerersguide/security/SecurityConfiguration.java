@@ -1,5 +1,6 @@
 package com.example.sorcerersguide.security;
 
+import com.example.sorcerersguide.constants.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -26,14 +27,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/").hasRole("USER")
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/").hasRole(Roles.USER)
+                .antMatchers("/admin/**").hasRole(Roles.ADMIN)
                 .antMatchers("/static/**").permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .permitAll().and()
-                .csrf().disable();
+                .csrf().disable()
+                .logout().deleteCookies("JSESSIONID")
+                .and()
+                .rememberMe().key("SecretKey");
     }
 
     @Bean

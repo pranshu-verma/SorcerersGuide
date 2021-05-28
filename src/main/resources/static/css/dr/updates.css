@@ -16,6 +16,8 @@
 .update-heading small {
     margin: 0;
     font-weight: bold;
+    word-wrap: break-word;
+    display: inline-block;
 }
 
 .date small {

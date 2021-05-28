@@ -16,6 +16,8 @@
 .query-heading small {
     margin: 0;
     font-weight: bold;
+    word-wrap: break-word;
+    display: inline-block;
 }
 
 .date small {
@@ -36,8 +38,3 @@
 .search-form {
     padding: 0 16px;
 }
-
-/* .page-link {
-    background-color: var(--nav-link-active-background-color);
-    color: var(--color);
-} */

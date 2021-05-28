@@ -21,12 +21,15 @@
                 <li class="nav-item px-2">
                     <a id="heading-faqs" th:class="${activePage == 'faqs'} ? 'nav-link py-1 px-3 active' : 'nav-link py-1 px-3'" th:href="@{/dr/faqs}">FAQs</a>
                 </li>
+                <li class="nav-item px-2" th:if="${#lists.contains(#request.userPrincipal.principal.roles, 'ROLE_ADMIN')}">
+                    <a id="heading-admin" th:class="${activePage == 'admin'} ? 'nav-link py-1 px-3 active' : 'nav-link py-1 px-3'" th:href="@{/admin}">Admin</a>
+                </li>
             </ul>
             <span id="btn-toggle-theme" class="nav-icon">
                 <i class="fa fa-moon"></i>
             </span>
             <span class="navbar-text">
-                <small id="user-id-span"></small>
+                <small id="user-id-span">[[${#request.userPrincipal.principal.username}]]</small>
             </span>
             <span class="nav-link">
                 <form th:action="@{/logout}" method="POST">
