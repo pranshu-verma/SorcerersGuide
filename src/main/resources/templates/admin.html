@@ -15,11 +15,11 @@
 
     <div th:replace="navigation :: navigation"></div>
 
-    <h1>Hello world!</h1>
-
-    <a th:href="@{/admin/updates}">Updates</a>
-    <a th:href="@{/admin/queries}">Queries</a>
-    <a th:href="@{/admin/faqs}">FAQs</a>
+    <div class="container text-center">
+        <a class="mx-3" th:href="@{/admin/updates}">Updates</a>
+        <a class="mx-3" th:href="@{/admin/queries}">Queries</a>
+        <a class="mx-3" th:href="@{/admin/faqs}">FAQs</a>
+    </div>
 
     <div th:replace="~{common :: footer-imports}"></div>
 

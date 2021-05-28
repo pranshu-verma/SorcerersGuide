@@ -46,7 +46,7 @@ public class AdminController {
 
                 return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message, fileDownloadUri));
             } catch (Exception e) {
-                message = "Could not upload the file: " + file.getOriginalFilename() + "! Error: " + e;
+                message = "Error: " + e.getMessage();
                 return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message, ""));
             }
         }

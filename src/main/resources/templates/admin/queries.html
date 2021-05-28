@@ -1,36 +1,42 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="http://www.thymeleaf.org"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
 	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <head>
-<meta charset="UTF-8">
-<title>Home</title>
+	<meta charset="UTF-8">
+	<title>Queries - Sorcerer's Guide</title>
+	<link rel="icon" type="image/svg+xml" th:href="@{/icon/favicon.svg}">
+	<div th:replace="~{common :: header-imports}"></div>
+
 </head>
+
 <body>
 
-	<h1>Hello Admin!</h1>
+	<div th:replace="navigation :: navigation"></div>
 
-	<a th:href="@{/}">Home</a>
-	<a th:href="@{/logout}">Logout</a>
-
-	<div class="upload-container">
-		<div class="upload-content">
-			<div class="single-upload">
-				<h3>Upload the Queries CSV File </h3>
-				<form id="singleUploadForm" name="singleUploadForm">
-					<input id="singleFileUploadInput" type="file" name="file" class="file-input" required />
-					<button type="submit" class="primary submit-btn">Submit</button>
-				</form>
-				<div class="upload-response">
-					<div id="singleFileUploadError"></div>
-					<div id="singleFileUploadSuccess"></div>
+	<div class="container text-center mt-4">
+		<div class="upload-container">
+			<div class="upload-content">
+				<div class="single-upload">
+					<h3>Upload the CSV File </h3>
+					<form id="file-upload" name="file-upload">
+						<input id="file-input" type="file" name="file" class="file-input" accept=".csv" required />
+						<button type="submit" class="btn-sm btn-primary">Submit</button>
+					</form>
+					<div class="upload-response">
+						<div id="error-msg"></div>
+						<div id="success-msg"></div>
+					</div>
 				</div>
-			</div>
 
+			</div>
 		</div>
 	</div>
-	<script src="/js/admin/queries.js" ></script>
+
+	<div th:replace="~{common :: footer-imports}"></div>
+	<script src="/js/admin/queries.js"></script>
 
 </body>
+
 </html>

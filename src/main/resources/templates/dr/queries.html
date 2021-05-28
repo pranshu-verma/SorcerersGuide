@@ -22,20 +22,14 @@
 
         <div class="col-10">
 
-            <form action="" class="search-form" method="GET">
-                <div class="row">
-                    <div class="col-10">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="query" placeholder="Search an query" th:value="${query}">
-                            <input type="hidden" name="currentPage" value="1">
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        <div class="form-group m-0 mt-2">
-                            <button type="submit">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
+            <form action="" class="m-2" method="GET">
+                <div class="input-group md-form form-sm form-2 pl-0">
+                    <input class="form-control my-0 py-1" type="text" name="query" placeholder="Search in queries..." aria-label="Search" th:value="${query}">
+                    <input type="hidden" name="currentPage" value="1">
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <i class="fas fa-search text-grey text-dark" aria-hidden="true"></i>
+                        </span>
                     </div>
                 </div>
             </form>
@@ -89,8 +83,8 @@
                             <div class="col-10">
                                 <small class="px-2 py-1">[[${query.resolverResponse}]]</small>
                             </div>
-                            <div class="col-2 date">
-                                <small>[[${query.createdDate}]]</small>
+                            <div class="col-2 date text-right">
+                                <small class="mr-5">[[${query.createdDate}]]</small>
                             </div>
                         </div>
                     </div>
