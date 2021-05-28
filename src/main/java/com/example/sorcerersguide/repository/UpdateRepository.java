@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface UpdateRepository extends JpaRepository<Update, Long> {
 
-    Page<Update> findByHeadingContainingIgnoreCaseOrBodyContainingIgnoreCase(String heading, String body, Pageable pageable);
+    Page<Update> findByHeadingContainingIgnoreCaseOrBodyContainingIgnoreCaseOrderByIdDesc(String heading, String body, Pageable pageable);
 
 }

@@ -28,9 +28,21 @@ body {
     --nav-link-active-background-color: #fb3640;
     --navbar-background-color: #ff7b54;
     --navbar-link-hover-color: white;
+    
+    /* Updates */
     --updates-heading-background-color: #ff7b54;
     --updates-heading-color: white;
     --updates-heading-active-background-color: #fb3640;
+
+    /* Queries */
+    --queries-heading-background-color: #ff7b54;
+    --queries-heading-color: white;
+    --queries-heading-active-background-color: #fb3640;
+
+    /* FAQs */
+    --faqs-heading-background-color: #ff7b54;
+    --faqs-heading-color: white;
+    --faqs-heading-active-background-color: #fb3640;
 
     background-color: var(--background-color);
     color: var(--color);
@@ -42,7 +54,19 @@ body.dark {
     --nav-link-active-background-color: #0088a9;
     --navbar-background-color: #24252a;
     --navbar-link-hover-color: #1538ff;
-    --updates-heading-background-color: #3654fc;
+
+    /* Updates */
+    --updates-heading-background-color: #000031;
     --updates-heading-color: white;
-    --updates-heading-active-background-color: #1538ff;
+    --updates-heading-active-background-color: #000080;
+
+    /* Queries */
+    --queries-heading-background-color: #000031;
+    --queries-heading-color: white;
+    --queries-heading-active-background-color: #000080;
+
+    /* FAQs */
+    --faqs-heading-background-color: #000031;
+    --faqs-heading-color: white;
+    --faqs-heading-active-background-color: #000080;
 }

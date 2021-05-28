@@ -12,18 +12,18 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "updates")
-public class Update {
+@Table(name = "faqs")
+public class Faq {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true)
     private Long id;
+    private String date;
     @Column(columnDefinition = "TEXT")
-    private String heading;
+    private String question;
     @Column(columnDefinition = "TEXT")
-    private String body;
-    private String updateDate;
-    private String addedBy;
+    private String answer;
+    private String isDeprecated;
 
 }

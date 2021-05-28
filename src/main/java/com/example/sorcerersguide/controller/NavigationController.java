@@ -1,6 +1,10 @@
 package com.example.sorcerersguide.controller;
 
+import com.example.sorcerersguide.model.Faq;
+import com.example.sorcerersguide.model.Query;
 import com.example.sorcerersguide.model.Update;
+import com.example.sorcerersguide.service.FaqService;
+import com.example.sorcerersguide.service.QueryService;
 import com.example.sorcerersguide.service.UpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,10 +25,16 @@ public class NavigationController {
     @Autowired
     private UpdateService updateService;
 
-    private final String prefixFolder = "/dr/";
+    @Autowired
+    private QueryService queryService;
+
+    @Autowired
+    private FaqService faqService;
+
+    private final String prefixFolder = "dr/";
 
     public static final Integer defaultPage = 1;
-    public static final Integer defaultPageSize = 2;
+    public static final Integer defaultPageSize = 30;
 
     @GetMapping("/updates")
     public ModelAndView updates(@RequestParam Optional<String> query,
@@ -44,24 +54,56 @@ public class NavigationController {
         modelAndView.addObject("query", body);
         modelAndView.addObject("updates", updateList);
         modelAndView.addObject("totalPages", totalPages);
-        modelAndView.addObject("currentPage", currentPage);
+        modelAndView.addObject("currentPage", currentPage.orElse(defaultPage));
         modelAndView.addObject("totalElements", totalElements);
         modelAndView.setViewName(prefixFolder + "updates");
         return modelAndView;
     }
 
     @GetMapping("/queries")
-    public ModelAndView queries() {
+    public ModelAndView queries(@RequestParam Optional<String> query,
+                                @RequestParam Optional<Integer> currentPage,
+                                @RequestParam Optional<Integer> pageSize) {
         ModelAndView modelAndView = new ModelAndView();
+
+        // Search query
+        String heading = query.orElse("");
+        String body = query.orElse("");
+        Page<Query> queryList = queryService.getSearchedQueries(heading, body,
+                PageRequest.of(currentPage.orElse(defaultPage) - 1, pageSize.orElse(defaultPageSize)));
+        Integer totalPages = queryList.getTotalPages();
+        Long totalElements = queryList.getTotalElements();
+
         modelAndView.addObject("activePage", "queries");
+        modelAndView.addObject("query", body);
+        modelAndView.addObject("queries", queryList);
+        modelAndView.addObject("totalPages", totalPages);
+        modelAndView.addObject("currentPage", currentPage.orElse(defaultPage));
+        modelAndView.addObject("totalElements", totalElements);
         modelAndView.setViewName(prefixFolder + "queries");
         return modelAndView;
     }
 
     @GetMapping("/faqs")
-    public ModelAndView faqs() {
+    public ModelAndView faqs(@RequestParam Optional<String> query,
+                                @RequestParam Optional<Integer> currentPage,
+                                @RequestParam Optional<Integer> pageSize) {
         ModelAndView modelAndView = new ModelAndView();
+
+        // Search FAQ
+        String question = query.orElse("");
+        String answer = query.orElse("");
+        Page<Faq> faqList = faqService.getSearchedFaqs(question, answer,
+                PageRequest.of(currentPage.orElse(defaultPage) - 1, pageSize.orElse(defaultPageSize)));
+        Integer totalPages = faqList.getTotalPages();
+        Long totalElements = faqList.getTotalElements();
+
         modelAndView.addObject("activePage", "faqs");
+        modelAndView.addObject("query", question);
+        modelAndView.addObject("faqs", faqList);
+        modelAndView.addObject("totalPages", totalPages);
+        modelAndView.addObject("currentPage", currentPage.orElse(defaultPage));
+        modelAndView.addObject("totalElements", totalElements);
         modelAndView.setViewName(prefixFolder + "faqs");
         return modelAndView;
     }

@@ -1,0 +1,43 @@
+.query {
+    margin: 8px;
+}
+
+.query-heading {
+    padding: 2px;
+    background-color: var(--queries-heading-background-color);
+}
+
+.query-active, .query-heading:hover {
+    background-color: var(--queries-heading-active-background-color);
+    color: white;
+    cursor: pointer;
+}
+
+.query-heading small {
+    margin: 0;
+    font-weight: bold;
+}
+
+.date small {
+    font-weight: normal;
+}
+
+.query-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+
+.query-body p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.search-form {
+    padding: 0 16px;
+}
+
+/* .page-link {
+    background-color: var(--nav-link-active-background-color);
+    color: var(--color);
+} */

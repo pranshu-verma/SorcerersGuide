@@ -21,7 +21,7 @@ public class UpdateService {
     }
 
     public Page<Update> getSearchedUpdates(String heading, String body, Pageable pageable) {
-        return updateRepository.findByHeadingContainingIgnoreCaseOrBodyContainingIgnoreCase(heading, body, pageable);
+        return updateRepository.findByHeadingContainingIgnoreCaseOrBodyContainingIgnoreCaseOrderByIdDesc(heading, body, pageable);
     }
 
 }
