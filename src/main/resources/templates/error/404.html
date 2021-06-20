@@ -1,17 +1,40 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <head>
-<meta charset="UTF-8">
-<title>404 - Sorcerer's Guide</title>
-<link rel="stylesheet" href="/css/styles.css">
+	<meta charset="UTF-8">
+	<title>404 - Sorcerer's Guide</title>
+	<link rel="icon" type="image/svg+xml" th:href="@{/icon/favicon.svg}">
+	<div th:replace="~{common :: header-imports}"></div>
+
 </head>
+
 <body>
 
-	<h1>The requested page is not found.</h1>
+<div th:replace="navigation :: navigation"></div>
+
+<div class="container text-center">
+
+	<div class="text-center">
+		<h1>Error 404</h1>
+		<p>The page you are looking for does not exist.</p>
+	</div>
+
+	<div class="gif">
+		<img src="/gifs/amazon-surprise.gif" height="300px" width="400px">
+	</div>
+
+	<div class="home mt-2">
+		<a th:href="@{/}">Home</a>
+	</div>
+
+</div>
+
+
+<div th:replace="~{common :: footer-imports}"></div>
 
 </body>
-</html>
 
+</html>

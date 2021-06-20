@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -27,17 +28,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/").hasRole(Roles.USER)
                 .antMatchers("/admin/**").hasRole(Roles.ADMIN)
-                .antMatchers("/static/**").permitAll()
+                .antMatchers("/css/**", "/fonts/**", "/gifs/**", "/icon/**", "/images/**", "/js/**").permitAll()
+                .antMatchers("/**").hasRole(Roles.USER)
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .permitAll().and()
-                .csrf().disable()
-                .logout().deleteCookies("JSESSIONID")
+                .loginPage("/login").permitAll()
                 .and()
-                .rememberMe().key("SecretKey");
+                .csrf().disable()
+                .logout().permitAll();
     }
 
     @Bean
