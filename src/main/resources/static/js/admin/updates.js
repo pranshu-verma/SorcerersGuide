@@ -18,9 +18,9 @@ function uploadFile(file) {
         if (xhttp.status == 200) {
             error_msg.style.display = "none";
             success_msg.innerHTML = `
-                <p>File Uploaded Successfully.</p>
+                <p>${response.message}</p>
                 <p>DownloadUrl : 
-                    <a href='" + response.fileDownloadUri + "' target='_blank'>" + response.fileDownloadUri + "</a>
+                    <a href="${response.fileDownloadUri}" target="_blank">${response.fileDownloadUri}</a>
                 </p>
                 `;
             success_msg.style.display = "block";
@@ -28,7 +28,6 @@ function uploadFile(file) {
             success_msg.style.display = "none";
             error_msg.innerHTML = "<p>" + (response && response.message) + "<p>" || "Some Error Occurred";
             success_msg.style.display = "block";
-
         }
     }
 

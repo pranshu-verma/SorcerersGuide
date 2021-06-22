@@ -40,9 +40,10 @@ public class AdminController {
                 message = "Uploaded the file successfully: " + file.getOriginalFilename();
 
                 String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                        .path("/updates/download/")
+                        .path("/admin/download/" + table + "/")
                         .path(Objects.requireNonNull(file.getOriginalFilename()))
                         .toUriString();
+                System.out.println(fileDownloadUri);
 
                 return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message, fileDownloadUri));
             } catch (Exception e) {
@@ -55,9 +56,9 @@ public class AdminController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message,""));
     }
 
-    @GetMapping("/download/{fileName:.+}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName) {
-        InputStreamResource file = new InputStreamResource(excelService.load());
+    @GetMapping("/download/{tableName}/{fileName:.+}")
+    public ResponseEntity<Resource> downloadFile(@PathVariable String tableName, @PathVariable String fileName) {
+        InputStreamResource file = new InputStreamResource(excelService.load(tableName));
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileName)
