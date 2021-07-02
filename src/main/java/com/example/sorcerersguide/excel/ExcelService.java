@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -47,10 +48,21 @@ public class ExcelService {
         }
     }
 
-    public ByteArrayInputStream load() {
-        List<Update> updates = updateRepository.findAll();
+    public ByteArrayInputStream load(String tableName) {
 
-        return ExcelHelper.updatesToCsv(updates);
+        switch (tableName) {
+            case "updates":
+                List<Update> updates = updateRepository.findAll();
+                return ExcelHelper.updatesToCsv(updates);
+            case "queries":
+                List<Query> queries = queriesRepository.findAll();
+                return ExcelHelper.updatesToQueries(queries);
+            case "faqs":
+                List<Faq> faqs = faqRepository.findAll();
+                return ExcelHelper.updatesToFaqs(faqs);
+        }
+
+        return new ByteArrayInputStream(new ByteArrayOutputStream().toByteArray());
     }
 
 }

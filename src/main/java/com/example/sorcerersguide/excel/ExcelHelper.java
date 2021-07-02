@@ -114,7 +114,18 @@ public class ExcelHelper {
         final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.MINIMAL);
 
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();
-             CSVPrinter csvPrinter = new CSVPrinter(new PrintWriter(out), format);) {
+            CSVPrinter csvPrinter = new CSVPrinter(new PrintWriter(out), format)) {
+
+            List<String> header = Arrays.asList(
+                    UPDATE_HEADERS[0],
+                    UPDATE_HEADERS[1],
+                    UPDATE_HEADERS[2],
+                    UPDATE_HEADERS[3],
+                    UPDATE_HEADERS[4]
+            );
+
+            csvPrinter.printRecord(header);
+
             for (Update update : updates) {
                 List<String> data = Arrays.asList(
                         String.valueOf(update.getId()),
@@ -134,4 +145,80 @@ public class ExcelHelper {
         }
     }
 
+    public static ByteArrayInputStream updatesToQueries(List<Query> queries) {
+        final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.MINIMAL);
+
+        try (ByteArrayOutputStream out = new ByteArrayOutputStream();
+            CSVPrinter csvPrinter = new CSVPrinter(new PrintWriter(out), format)) {
+
+            List<String> header = Arrays.asList(
+                    QUERIES_HEADERS[0],
+                    QUERIES_HEADERS[1],
+                    QUERIES_HEADERS[2],
+                    QUERIES_HEADERS[3],
+                    QUERIES_HEADERS[4],
+                    QUERIES_HEADERS[5],
+                    QUERIES_HEADERS[6],
+                    QUERIES_HEADERS[7],
+                    QUERIES_HEADERS[7]
+            );
+
+            csvPrinter.printRecord(header);
+
+            for (Query query : queries) {
+                List<String> data = Arrays.asList(
+                        String.valueOf(query.getQueryId()),
+                        query.getQueryLink(),
+                        query.getQueryQuestion(),
+                        query.getQueryRequester(),
+                        query.getQueryStatus(),
+                        query.getResolverLogin(),
+                        query.getResolverResponse(),
+                        query.getCreatedDate(),
+                        query.getResponseDate()
+                );
+
+                csvPrinter.printRecord(data);
+            }
+
+            csvPrinter.flush();
+            return new ByteArrayInputStream(out.toByteArray());
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to export data to CSV file: " + e.getMessage());
+        }
+    }
+    public static ByteArrayInputStream updatesToFaqs(List<Faq> faqs) {
+        final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.MINIMAL);
+
+        try (ByteArrayOutputStream out = new ByteArrayOutputStream();
+            CSVPrinter csvPrinter = new CSVPrinter(new PrintWriter(out), format)) {
+
+            List<String> header = Arrays.asList(
+                    FAQ_HEADERS[0],
+                    FAQ_HEADERS[1],
+                    FAQ_HEADERS[2],
+                    FAQ_HEADERS[3],
+                    FAQ_HEADERS[4]
+            );
+
+            csvPrinter.printRecord(header);
+
+            for (Faq faq : faqs) {
+                List<String> data = Arrays.asList(
+                        String.valueOf(faq.getId()),
+                        faq.getDate(),
+                        faq.getQuestion(),
+                        faq.getAnswer(),
+                        faq.getIsDeprecated()
+                );
+
+                csvPrinter.printRecord(data);
+            }
+
+            csvPrinter.flush();
+            return new ByteArrayInputStream(out.toByteArray());
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to export data to CSV file: " + e.getMessage());
+        }
+    }
 }

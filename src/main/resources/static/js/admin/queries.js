@@ -18,9 +18,9 @@ function uploadSingleFile(file) {
         if (xhttp.status == 200) {
             error_msg.style.display = "none";
             success_msg.innerHTML = `
-                <p>File Uploaded Successfully.</p>
+                <p>${response.message}</p>
                 <p>DownloadUrl : 
-                    <a href='" + response.fileDownloadUri + "' target='_blank'>" + response.fileDownloadUri + "</a>
+                    <a href="${response.fileDownloadUri}" target="_blank">${response.fileDownloadUri}</a>
                 </p>
                 `;
             success_msg.style.display = "block";
