@@ -15,7 +15,7 @@
 
     <div th:replace="navigation :: navigation"></div>
 
-    <div class="container text-center">
+    <div id="content" class="container text-center">
         <h1>Home</h1>
         [[${#request.userPrincipal.principal.username}]]
     </div>
