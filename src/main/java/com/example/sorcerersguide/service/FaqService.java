@@ -26,4 +26,8 @@ public class FaqService {
         return faqRepository.findByQuestionContainingIgnoreCaseOrAnswerContainingIgnoreCaseOrderByIdDesc(question, answer, pageable);
     }
 
+    public void deleteAllFaqs() {
+        faqRepository.deleteAll();
+    }
+
 }

@@ -24,4 +24,8 @@ public class UpdateService {
         return updateRepository.findByHeadingContainingIgnoreCaseOrBodyContainingIgnoreCaseOrderByIdDesc(heading, body, pageable);
     }
 
+    public void deleteAllUpdates() {
+        updateRepository.deleteAll();
+    }
+
 }

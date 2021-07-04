@@ -1,7 +1,9 @@
 var file_upload_form = document.querySelector('#file-upload');
+var delete_form = document.querySelector('#delete-form');
 var file_input = document.querySelector('#file-input');
 var error_msg = document.querySelector('#error-msg');
 var success_msg = document.querySelector('#success-msg');
+var response_msg = document.querySelector('#response-msg');
 
 
 function uploadSingleFile(file) {
@@ -35,6 +37,21 @@ function uploadSingleFile(file) {
     xhttp.send(formData);
 }
 
+function deleteAllFaqs() {
+    var formData = new FormData();
+    formData.append("table", "faqs");
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "/admin/delete");
+
+    xhttp.onload = function() {
+        console.log(xhttp.responseText);
+        var response = JSON.parse(xhttp.responseText);
+        response_msg.innerHTML = response.message;
+    }
+
+    xhttp.send(formData);
+}
+
 file_upload_form.addEventListener('submit', function(event){
     var files = file_input.files;
     if (files.length === 0) {
@@ -43,4 +60,10 @@ file_upload_form.addEventListener('submit', function(event){
     }
     uploadSingleFile(files[0]);
     event.preventDefault();
+}, true);
+
+
+delete_form.addEventListener("submit", (e) => {
+    deleteAllFaqs();
+    e.preventDefault();
 }, true);

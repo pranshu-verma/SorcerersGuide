@@ -24,4 +24,8 @@ public class QueryService {
         return queriesRepository.findByQueryQuestionContainingIgnoreCaseOrResolverResponseContainingIgnoreCaseOrderByCreatedDateDesc(heading, body, pageable);
     }
 
+    public void deleteAllQueries() {
+        queriesRepository.deleteAll();
+    }
+
 }

@@ -18,6 +18,7 @@ public class MainController {
     @GetMapping("/admin")
     public ModelAndView admin() {
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("activePage", "admin");
         modelAndView.setViewName("admin");
         return modelAndView;
     }

@@ -4,11 +4,14 @@
 <body>
     <!-- Navbar -->
     <div class="navbar" th:fragment="navigation">
-        <span id="side-navbar-btn-open" onclick="openNav()"><i class="fa fa-2x fa-bars"></i></span>
-        <span id="side-navbar-btn-close" onclick="closeNav()"><i class="fa fa-2x fa-times"></i></span>
+        <span id="side-navbar-btn-open"><i class="fa fa-2x fa-bars"></i></span>
+        <span id="side-navbar-btn-close"><i class="fa fa-2x fa-times"></i></span>
 
         <nav id="side-navbar" class="side-navbar" th:fragment="navigation">
             <ul id="navbar-heading-ul" class="navbar-nav text-center">
+                <li class="nav-heading">
+                    <a id="heading-home" th:class="'nav-link py-3 px-3'" th:href="@{/}"><img src="/icon/favicon.svg" alt="Home" height="50" width="50"></a>
+                </li>
                 <li class="nav-item">
                     <a id="heading-updates" th:class="${activePage == 'updates'} ? 'nav-link py-1 px-3 active' : 'nav-link py-1 px-3'" th:href="@{/dr/updates}">Updates</a>
                 </li>

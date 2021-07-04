@@ -1,5 +1,5 @@
 .navbar {
-    transition: all 0.5s;
+    transition: all 0.3s;
 }
 
 .active {
@@ -16,12 +16,12 @@
     left: 0;
     background-color: var(--navbar-background-color);
     overflow-x: hidden;
-    transition: all 0.5s;
+    transition: all 0.3s;
     padding-top: 8px;
     box-shadow: 5px 10px 10px black;
 }
 
-.nav-item {
+.nav-item, .nav-heading {
     line-height: 50px;
 }
 
@@ -30,6 +30,7 @@
     color: var(--color);
     display: block;
     transition: all 0.3s;
+    border-bottom: 1px solid black;
 }
 
 .nav-icon {
@@ -40,8 +41,10 @@
     list-style-type: none;
 }
   
-.side-navbar a:hover {
+.nav-item a:hover {
     color: var(--navbar-link-hover-color);
+    background-color: var(--navbar-link-hover-background-color);
+    margin-left: 30px;
 }
 
 #side-navbar-btn-close {
@@ -50,7 +53,7 @@
     z-index: 1000;
     cursor: pointer;
     margin-left: -100px;
-    transition: all 0.5s;
+    transition: all 0.3s;
 }
 
 #side-navbar-btn-open {
@@ -59,7 +62,7 @@
     position: absolute;
     z-index: 10;
     cursor: pointer;
-    transition: all 0.5s;
+    transition: all 0.3s;
 }
   
 #content {

@@ -3,7 +3,12 @@ package com.example.sorcerersguide.controller;
 import com.example.sorcerersguide.excel.ExcelHelper;
 import com.example.sorcerersguide.excel.ExcelService;
 import com.example.sorcerersguide.excel.ResponseMessage;
+import com.example.sorcerersguide.model.Faq;
+import com.example.sorcerersguide.model.Query;
 import com.example.sorcerersguide.model.Update;
+import com.example.sorcerersguide.service.FaqService;
+import com.example.sorcerersguide.service.QueryService;
+import com.example.sorcerersguide.service.UpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -25,7 +30,16 @@ import java.util.Objects;
 public class AdminController {
 
     @Autowired
-    ExcelService excelService;
+    private ExcelService excelService;
+
+    @Autowired
+    private UpdateService updateService;
+
+    @Autowired
+    private QueryService queryService;
+
+    @Autowired
+    private FaqService faqService;
 
     private final String prefixFolder = "/admin/";
 
@@ -54,6 +68,29 @@ public class AdminController {
 
         message = "Please upload a csv file!";
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message,""));
+    }
+
+    @PostMapping("/delete")
+    public ResponseEntity<ResponseMessage> deleteAllUpdates(@RequestParam String table) {
+        String message;
+        try {
+            switch (table) {
+            case "updates":
+                updateService.deleteAllUpdates();
+                break;
+            case "queries":
+                queryService.deleteAllQueries();
+                break;
+            case "faqs":
+                faqService.deleteAllFaqs();
+                break;
+        }
+            message = "Deleted successfully!";
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message, ""));
+        } catch (Exception e) {
+            message = "Error: " + e.getMessage();
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message, ""));
+        }
     }
 
     @GetMapping("/download/{tableName}/{fileName:.+}")

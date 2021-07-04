@@ -15,7 +15,7 @@
 
 	<div th:replace="navigation :: navigation"></div>
 
-	<div class="container text-center mt-2">
+	<div id="content" class="container text-center mt-2">
 		<div class="upload-container">
 			<div class="upload-content">
 				<div class="single-upload">
@@ -31,6 +31,14 @@
 				</div>
 
 			</div>
+		</div>
+		<div class="delete-container">
+			<form id="delete-form" name="delete-form">
+				<button id="btn-delete-all" type="submit">Delete all updates</button>
+				<div class="upload-response">
+					<div id="response-msg"></div>
+				</div>
+			</form>
 		</div>
 	</div>
 
