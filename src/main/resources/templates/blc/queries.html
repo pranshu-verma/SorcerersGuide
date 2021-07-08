@@ -6,7 +6,7 @@
     <title>Queries - Sorcerer's Guide</title>
     <link rel="icon" type="image/svg+xml" th:href="@{/icon/favicon.svg}">
     <div th:replace="~{common :: header-imports}"></div>
-    <link rel="stylesheet" th:href="@{/css/dr/queries.css}">
+    <link rel="stylesheet" th:href="@{/css/pa/queries.css}">
 
 </head>
 
@@ -45,29 +45,29 @@
                     <nav>
                         <ul class="pagination pagination-sm justify-content-end flex-wrap">
                             <li th:class="${currentPage > 1} ? 'page-item' : 'page-item disabled'">
-                                <a th:href="@{/dr/queries(query=${query}, currentPage=${1})}" class="page-link">First</a>
+                                <a th:href="@{/pa/queries(query=${query}, currentPage=${1})}" class="page-link">First</a>
                             </li>
                             <li th:class="${currentPage > 1} ? 'page-item' : 'page-item disabled'">
-                                <a th:href="@{/dr/queries(query=${query}, currentPage=${currentPage - 1})}" class="page-link">
+                                <a th:href="@{/pa/queries(query=${query}, currentPage=${currentPage - 1})}" class="page-link">
                                     <span aria-hidden="true">&laquo;</span>
                                     <span class="sr-only">Previous</span>
                                 </a>
                             </li>
     
                             <select name="currentPage" id="currentPageSelect" onchange="if (this.value) window.location.href=this.value">
-                                <option th:each="i : ${#numbers.sequence(1, totalPages)}" th:value="@{/dr/queries(query=${query}, currentPage=${i})}" th:selected="${i == currentPage}">
+                                <option th:each="i : ${#numbers.sequence(1, totalPages)}" th:value="@{/pa/queries(query=${query}, currentPage=${i})}" th:selected="${i == currentPage}">
                                     [[${i}]]
                                 </option>
                             </select>
                                 
                             <li th:class="${currentPage < totalPages} ? 'page-item' : 'page-item disabled'">
-                                <a th:href="@{/dr/queries(query=${query}, currentPage=${currentPage + 1})}" class="page-link">
+                                <a th:href="@{/pa/queries(query=${query}, currentPage=${currentPage + 1})}" class="page-link">
                                     <span aria-hidden="true">&raquo;</span>
                                     <span class="sr-only">Next</span>
                                 </a>
                             </li>
                             <li th:class="${currentPage < totalPages} ? 'page-item' : 'page-item disabled'">
-                                <a th:href="@{/dr/queries(query=${query}, currentPage=${totalPages})}" class="page-link">Last</a>
+                                <a th:href="@{/pa/queries(query=${query}, currentPage=${totalPages})}" class="page-link">Last</a>
                             </li>
     
                         </ul>
@@ -107,7 +107,7 @@
 </div>
 
 <div th:replace="~{common :: footer-imports}"></div>
-<script src="/js/dr/queries.js"></script>
+<script src="/js/pa/queries.js"></script>
 
 </body>
 

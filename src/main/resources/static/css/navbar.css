@@ -7,6 +7,10 @@
     background-color: var(--nav-link-active-background-color);
 }
 
+.nav-link {
+    color: var(--color);
+}
+
 .side-navbar {
     height: 100%;
     width: 0;
@@ -67,4 +71,45 @@
   
 #content {
     transition: all .5s;
+}
+
+.navbar-right-link {
+    margin-right: 16px;
+    margin-left: 16px;
+}
+
+.feedback-link {
+    color: var(--color);
+}
+
+.navbar-left {
+    display: flex;
+    justify-content: space-around;
+    padding-left: 50px;
+}
+
+.navbar-left-link {
+    font-size: large;
+    color: var(--color);
+    transition: all 0.3s;
+}
+
+.navbar-left-link a:hover {
+    color: var(--navbar-link-hover-color);
+    background-color: var(--navbar-link-hover-background-color);
+}
+
+.navbar-header {
+    width: 100%;
+}
+
+.navbar-header-active {
+    color: var(--color);
+    border-bottom: 1px solid var(--color);
+}
+
+.scroll-tips-container {
+    color: var(--color);
+    background-color: var(--navbar-link-hover-background-color);
+    height: 100%;
 }

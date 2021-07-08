@@ -1,10 +1,14 @@
 .navbar {
-    transition: all 0.5s;
+    transition: all 0.3s;
 }
 
 .active {
     color: var(--color);
     background-color: var(--nav-link-active-background-color);
+}
+
+.nav-link {
+    color: var(--color);
 }
 
 .side-navbar {
@@ -16,12 +20,12 @@
     left: 0;
     background-color: var(--navbar-background-color);
     overflow-x: hidden;
-    transition: all 0.5s;
+    transition: all 0.3s;
     padding-top: 8px;
     box-shadow: 5px 10px 10px black;
 }
 
-.nav-item {
+.nav-item, .nav-heading {
     line-height: 50px;
 }
 
@@ -30,6 +34,7 @@
     color: var(--color);
     display: block;
     transition: all 0.3s;
+    border-bottom: 1px solid black;
 }
 
 .nav-icon {
@@ -40,8 +45,10 @@
     list-style-type: none;
 }
   
-.side-navbar a:hover {
+.nav-item a:hover {
     color: var(--navbar-link-hover-color);
+    background-color: var(--navbar-link-hover-background-color);
+    margin-left: 30px;
 }
 
 #side-navbar-btn-close {
@@ -50,7 +57,7 @@
     z-index: 1000;
     cursor: pointer;
     margin-left: -100px;
-    transition: all 0.5s;
+    transition: all 0.3s;
 }
 
 #side-navbar-btn-open {
@@ -59,9 +66,50 @@
     position: absolute;
     z-index: 10;
     cursor: pointer;
-    transition: all 0.5s;
+    transition: all 0.3s;
 }
   
 #content {
     transition: all .5s;
+}
+
+.navbar-right-link {
+    margin-right: 16px;
+    margin-left: 16px;
+}
+
+.feedback-link {
+    color: var(--color);
+}
+
+.navbar-left {
+    display: flex;
+    justify-content: space-around;
+    padding-left: 50px;
+}
+
+.navbar-left-link {
+    font-size: large;
+    color: var(--color);
+    transition: all 0.3s;
+}
+
+.navbar-left-link a:hover {
+    color: var(--navbar-link-hover-color);
+    background-color: var(--navbar-link-hover-background-color);
+}
+
+.navbar-header {
+    width: 100%;
+}
+
+.navbar-header-active {
+    color: var(--color);
+    border-bottom: 1px solid var(--color);
+}
+
+.scroll-tips-container {
+    color: var(--color);
+    background-color: var(--navbar-link-hover-background-color);
+    height: 100%;
 }

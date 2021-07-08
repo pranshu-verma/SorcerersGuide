@@ -19,8 +19,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/dr")
-public class NavigationController {
+@RequestMapping("/pa")
+public class PAController {
 
     @Autowired
     private UpdateService updateService;
@@ -31,10 +31,18 @@ public class NavigationController {
     @Autowired
     private FaqService faqService;
 
-    private final String prefixFolder = "dr/";
+    private final String prefixFolder = "pa/";
 
     public static final Integer defaultPage = 1;
     public static final Integer defaultPageSize = 30;
+
+    @GetMapping("/")
+    public ModelAndView home() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("activeProgram", "pa");
+        modelAndView.setViewName(prefixFolder + "index");
+        return modelAndView;
+    }
 
     @GetMapping("/updates")
     public ModelAndView updates(@RequestParam Optional<String> query,
@@ -51,6 +59,7 @@ public class NavigationController {
         Long totalElements = updateList.getTotalElements();
 
         modelAndView.addObject("activePage", "updates");
+        modelAndView.addObject("activeProgram", "pa");
         modelAndView.addObject("query", body);
         modelAndView.addObject("updates", updateList);
         modelAndView.addObject("totalPages", totalPages);
@@ -75,6 +84,7 @@ public class NavigationController {
         Long totalElements = queryList.getTotalElements();
 
         modelAndView.addObject("activePage", "queries");
+        modelAndView.addObject("activeProgram", "pa");
         modelAndView.addObject("query", body);
         modelAndView.addObject("queries", queryList);
         modelAndView.addObject("totalPages", totalPages);
@@ -99,6 +109,7 @@ public class NavigationController {
         Long totalElements = faqList.getTotalElements();
 
         modelAndView.addObject("activePage", "faqs");
+        modelAndView.addObject("activeProgram", "pa");
         modelAndView.addObject("query", question);
         modelAndView.addObject("faqs", faqList);
         modelAndView.addObject("totalPages", totalPages);

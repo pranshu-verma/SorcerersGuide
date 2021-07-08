@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home - Sorcerer's Guide</title>
+    <link rel="icon" type="image/svg+xml" th:href="@{/icon/favicon.svg}">
+    <div th:replace="~{common :: header-imports}"></div>
+    <link rel="stylesheet" href="/src/main/resources/static/css/styles.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/styles.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/index.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/navbar.css">
+
+</head>
+
+<body>
+
+    <div class="navbar" th:fragment="navigation">
+        <span id="side-navbar-btn-open"><i class="fa fa-2x fa-bars"></i></span>
+        <span id="side-navbar-btn-close"><i class="fa fa-2x fa-times"></i></span>
+
+        <nav id="side-navbar" class="side-navbar" th:fragment="navigation">
+            <ul id="navbar-heading-ul" class="navbar-nav text-center">
+                <li class="nav-heading">
+                    <a id="heading-home" th:class="'nav-link py-3 px-3'" th:href="@{/}"><img src="/icon/favicon.svg"
+                            alt="Home" height="50" width="50"></a>
+                </li>
+                <li class="nav-item">
+                    <a id="heading-updates"
+                        th:class="${activePage == 'updates'} ? 'nav-link py-1 px-3 active' : 'nav-link py-1 px-3'"
+                        th:href="@{/pa/updates}">Updates</a>
+                </li>
+                <li class="nav-item">
+                    <a id="heading-queries"
+                        th:class="${activePage == 'queries'} ? 'nav-link py-1 px-3 active' : 'nav-link py-1 px-3'"
+                        th:href="@{/pa/queries}">Queries</a>
+                </li>
+                <li class="nav-item">
+                    <a id="heading-faqs"
+                        th:class="${activePage == 'faqs'} ? 'nav-link py-1 px-3 active' : 'nav-link py-1 px-3'"
+                        th:href="@{/pa/faqs}">FAQs</a>
+                </li>
+                <li class="nav-item" th:if="${#lists.contains(#request.userPrincipal.principal.roles, 'ROLE_ADMIN')}">
+                    <a id="heading-admin"
+                        th:class="${activePage == 'admin'} ? 'nav-link py-1 px-3 active' : 'nav-link py-1 px-3'"
+                        th:href="@{/admin}">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <!-- <span id="btn-toggle-theme" class="nav-icon">
+                        <i class="fa fa-2x fa-moon"></i><small></small>
+                    </span> -->
+                </li>
+                <li class="nav-item">
+                    <span class="nav-link">
+                        <form th:action="@{/logout}" method="POST">
+                            <button type="submit" name="logout" class="btn btn-sm btn-danger">Logout</button>
+                        </form>
+                    </span>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="row p-0 m-0 pt-1 navbar-header">
+            <!-- Left -->
+            <div class="col-3 navbar-left">
+                <small class="navbar-left-link">
+                    <a id="heading-pa"
+                        th:class="${activePage == 'pa'} ? 'nav-link py-1 px-3 active' : 'nav-link py-1 px-3'"
+                        th:href="@{/pa/}">PA</a>
+                </small>
+                <small class="navbar-left-link">
+                    <a id="heading-blc"
+                        th:class="${activePage == 'blc'} ? 'nav-link py-1 px-3 active' : 'nav-link py-1 px-3'"
+                        th:href="@{/pa/}">BLC</a>
+                </small>
+                <small class="navbar-left-link">
+                    <a id="heading-rp"
+                        th:class="${activePage == 'rp'} ? 'nav-link py-1 px-3 active' : 'nav-link py-1 px-3'"
+                        th:href="@{/pa/}">RP</a>
+                </small>
+            </div>
+
+            <!-- Center -->
+            <div class="col-6">
+                <div class="scroll-tips-container">
+                    <marquee behavior="scroll" direction="right" height="100%">Usage of NEXUS and Screen Recorder can
+                        help in error reduction.</marquee>
+                </div>
+            </div>
+
+            <!-- Right -->
+            <div class="col-3 navbar-right">
+                <small class="navbar-right-link">
+                    <a th:href="@{/}" class="feedback-link">Feedback</a>
+                </small>
+                <small class="navbar-right-link">
+                    <span id="btn-toggle-theme" class="nav-icon">
+                        <i class="fa fa-2x fa-moon"></i><small></small>
+                    </span>
+                </small>
+                <small class="navbar-right-link" style="display: inline-block">
+                    <form th:action="@{/logout}" method="POST">
+                        <button type="submit" name="logout" class="btn btn-sm btn-danger">Logout</button>
+                    </form>
+                </small>
+            </div>
+        </div>
+    </div>
+
+    <div id="content" class="container text-center">
+        <div class="card-deck">
+            <div class="card bg-warning">
+                <a href="" class="card-body text-center">
+                    <p class="card-text">Some text inside the second card</p>
+                </a>
+            </div>
+            <div class="card bg-success">
+                <div class="card-body text-center">
+                    <p class="card-text">Some text inside the third card</p>
+                </div>
+            </div>
+            <div class="card bg-danger">
+                <div class="card-body text-center">
+                    <p class="card-text">Some text inside the fourth card</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div th:replace="~{common :: footer-imports}"></div>
+    <script src="/src/main/resources/static/js/lib/jquery.min.js"></script>
+    <script src="/src/main/resources/static/js/lib/bootstrap.min.js"></script>
+    <script src="/src/main/resources/static/js/lib/popper.min.js"></script>
+    <script src="/src/main/resources/static/js/lib/font-awesome.min.js"></script>
+    <script src="/src/main/resources/static/js/theme.js"></script>
+    <script src="/src/main/resources/static/js/navbar.js"></script>
+
+</body>
+
+</html>
