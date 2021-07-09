@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home - Sorcerer's Guide</title>
+    <link rel="icon" type="image/svg+xml" th:href="@{/icon/favicon.svg}">
+    <div th:replace="~{common :: header-imports}"></div>
+
+</head>
+
+<body>
+
+    <div th:replace="navigation :: navigation"></div>
+
+    <div id="content" class="container text-center">
+        <a class="mx-3" th:href="@{/admin/{activeProgram}/updates(activeProgram=${activeProgram})}">Updates</a>
+        <a class="mx-3" th:href="@{/admin/{activeProgram}/queries(activeProgram=${activeProgram})}">Queries</a>
+        <a class="mx-3" th:href="@{/admin/{activeProgram}/faqs(activeProgram=${activeProgram})}">FAQs</a>
+        <a class="mx-3" th:href="@{/admin/{activeProgram}/allocations(activeProgram=${activeProgram})}">Allocations</a>
+    </div>
+
+    <div th:replace="~{common :: footer-imports}"></div>
+
+</body>
+
+</html>

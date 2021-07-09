@@ -1,4 +1,4 @@
-package com.example.sorcerersguide.controller;
+package com.example.sorcerersguide.controller.admin;
 
 import com.example.sorcerersguide.excel.ExcelHelper;
 import com.example.sorcerersguide.excel.ExcelService;
@@ -6,6 +6,7 @@ import com.example.sorcerersguide.excel.ResponseMessage;
 import com.example.sorcerersguide.model.Faq;
 import com.example.sorcerersguide.model.Query;
 import com.example.sorcerersguide.model.Update;
+import com.example.sorcerersguide.service.AllocationService;
 import com.example.sorcerersguide.service.FaqService;
 import com.example.sorcerersguide.service.QueryService;
 import com.example.sorcerersguide.service.UpdateService;
@@ -41,10 +42,11 @@ public class AdminController {
     @Autowired
     private FaqService faqService;
 
-    private final String prefixFolder = "/admin/";
+    @Autowired
+    private AllocationService allocationService;
 
-    @PostMapping("/upload")
-    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam MultipartFile file, @RequestParam String table) {
+    @PostMapping("/{activeProgram}/upload")
+    public ResponseEntity<ResponseMessage> uploadFile(@PathVariable String activeProgram, @RequestParam MultipartFile file, @RequestParam String table) {
         String message;
 
         if (ExcelHelper.hasCSVFormat(file)) {
@@ -84,6 +86,9 @@ public class AdminController {
             case "faqs":
                 faqService.deleteAllFaqs();
                 break;
+            case "allocations":
+                allocationService.deleteAllAllocations();
+                break;
         }
             message = "Deleted successfully!";
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message, ""));
@@ -103,25 +108,5 @@ public class AdminController {
                 .body(file);
     }
 
-    @GetMapping("/updates")
-    public ModelAndView updates() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(prefixFolder + "updates");
-        return modelAndView;
-    }
-
-    @GetMapping("/queries")
-    public ModelAndView queries() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(prefixFolder + "queries");
-        return modelAndView;
-    }
-
-    @GetMapping("/faqs")
-    public ModelAndView faqs() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(prefixFolder + "faqs");
-        return modelAndView;
-    }
 
 }

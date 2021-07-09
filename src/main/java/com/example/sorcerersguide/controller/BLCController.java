@@ -68,6 +68,15 @@ public class BLCController {
         return modelAndView;
     }
 
+    @GetMapping("/checklist")
+    public ModelAndView checklist() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("activePage", "checklist");
+        modelAndView.addObject("activeProgram", "blc");
+        modelAndView.setViewName(prefixFolder + "checklist");
+        return modelAndView;
+    }
+
     @GetMapping("/queries")
     public ModelAndView queries(@RequestParam Optional<String> query,
                                 @RequestParam Optional<Integer> currentPage,
@@ -115,6 +124,31 @@ public class BLCController {
         modelAndView.addObject("currentPage", currentPage.orElse(defaultPage));
         modelAndView.addObject("totalElements", totalElements);
         modelAndView.setViewName(prefixFolder + "faqs");
+        return modelAndView;
+    }
+
+    @GetMapping("/program-updates")
+    public ModelAndView programUpdates(@RequestParam Optional<String> query,
+                                       @RequestParam Optional<Integer> currentPage,
+                                       @RequestParam Optional<Integer> pageSize) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        // Search update
+        String heading = query.orElse("");
+        String body = query.orElse("");
+        Page<Update> updateList = updateService.getSearchedUpdates(heading, body,
+                PageRequest.of(currentPage.orElse(defaultPage) - 1, pageSize.orElse(defaultPageSize)));
+        Integer totalPages = updateList.getTotalPages();
+        Long totalElements = updateList.getTotalElements();
+
+        modelAndView.addObject("activePage", "program-updates");
+        modelAndView.addObject("activeProgram", "blc");
+        modelAndView.addObject("query", body);
+        modelAndView.addObject("updates", updateList);
+        modelAndView.addObject("totalPages", totalPages);
+        modelAndView.addObject("currentPage", currentPage.orElse(defaultPage));
+        modelAndView.addObject("totalElements", totalElements);
+        modelAndView.setViewName(prefixFolder + "program-updates");
         return modelAndView;
     }
 

@@ -7,21 +7,52 @@
     <meta charset="UTF-8">
     <title>Home - Sorcerer's Guide</title>
     <link rel="icon" type="image/svg+xml" th:href="@{/icon/favicon.svg}">
-    <div th:replace="~{common :: header-imports}"></div>
+	<link rel="stylesheet" th:href="@{/css/lib/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/lib/font-awesome.min.css}">
+	<link rel="stylesheet" th:href="@{/css/styles.css}">
+	<link rel="stylesheet" th:href="@{/css/navbar.css}">
+	<link rel="stylesheet" th:href="@{/css/index.css}">
 
 </head>
 
 <body>
 
-    <div th:replace="navigation :: navigation"></div>
-
-    <div id="content" class="container text-center">
-        <h1>Home</h1>
-        [[${#request.userPrincipal.principal.username}]]
+    <div class="text-right mt-3 mr-5">
+        <span id="btn-toggle-theme" class="nav-icon mx-3">
+            <i class="fa fa-moon"></i>
+        </span>
+        <small style="display: inline-block" class="mx-3">
+            <form th:action="@{/logout}" method="POST">
+                <button type="submit" name="logout" class="btn btn-sm btn-danger">Logout</button>
+            </form>
+        </small>
     </div>
 
+    <div id="content" class="container text-center">
+        <div class="card-deck">
+            <div class="card bg-warning">
+                <a th:href="@{/pa/}" class="card-body text-center">
+                    <p class="card-text">PA</p>
+                </a>
+            </div>
+            <div class="card bg-primary">
+                <a th:href="@{/blc/}" class="card-body text-center">
+                    <p class="card-text">BLC</p>
+                </a>
+            </div>
+            <div class="card bg-success">
+                <a th:href="@{/rp/}" class="card-body text-center">
+                    <p class="card-text">RP</p>
+                </a>
+            </div>
+        </div>
+    </div>
 
-    <div th:replace="~{common :: footer-imports}"></div>
+	<script src="/js/theme.js"></script>
+	<script src="/js/lib/jquery.min.js"></script>
+	<script src="/js/lib/bootstrap.min.js"></script>
+	<script src="/js/lib/popper.min.js"></script>
+	<script src="/js/lib/font-awesome.min.js"></script>
 
 </body>
 

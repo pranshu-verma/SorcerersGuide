@@ -5,7 +5,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>FAQs - Sorcerer's Guide</title>
+	<title>Updates - Sorcerer's Guide</title>
 	<link rel="icon" type="image/svg+xml" th:href="@{/icon/favicon.svg}">
 	<div th:replace="~{common :: header-imports}"></div>
 
@@ -34,17 +34,20 @@
 		</div>
 		<div class="delete-container">
 			<form id="delete-form" name="delete-form">
-				<button id="btn-delete-all" type="submit">Delete all FAQs</button>
+				<button id="btn-delete-all" type="submit">Delete all updates</button>
 				<div class="upload-response">
 					<div id="response-msg"></div>
 				</div>
 			</form>
 		</div>
+		<div class="download-container">
+			<a th:href="@{/admin/download/updates/updates.csv}">Download Updates file</a>
+		</div>
 	</div>
 
 
 	<div th:replace="~{common :: footer-imports}"></div>
-	<script src="/js/admin/faqs.js"></script>
+	<script src="/js/admin/pa/updates.js"></script>
 
 </body>
 

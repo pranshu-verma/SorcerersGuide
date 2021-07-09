@@ -1,8 +1,10 @@
 package com.example.sorcerersguide.excel;
 
+import com.example.sorcerersguide.model.Allocation;
 import com.example.sorcerersguide.model.Faq;
 import com.example.sorcerersguide.model.Query;
 import com.example.sorcerersguide.model.Update;
+import com.example.sorcerersguide.repository.AllocationRepository;
 import com.example.sorcerersguide.repository.FaqRepository;
 import com.example.sorcerersguide.repository.QueriesRepository;
 import com.example.sorcerersguide.repository.UpdateRepository;
@@ -27,6 +29,9 @@ public class ExcelService {
     @Autowired
     FaqRepository faqRepository;
 
+    @Autowired
+    AllocationRepository allocationRepository;
+
     public void save(MultipartFile file, String table) {
         try {
             switch (table) {
@@ -42,6 +47,10 @@ public class ExcelService {
                     List<Faq> faqs = ExcelHelper.csvToFaqs(file.getInputStream());
                     faqRepository.saveAll(faqs);
                     break;
+                case "allocations":
+                    List<Allocation> allocations = ExcelHelper.csvToAllocations(file.getInputStream());
+                    allocationRepository.saveAll(allocations);
+                    break;
             }
         } catch (IOException e) {
             throw new RuntimeException("Failed to store CSV data: " + e.getMessage());
@@ -56,10 +65,13 @@ public class ExcelService {
                 return ExcelHelper.updatesToCsv(updates);
             case "queries":
                 List<Query> queries = queriesRepository.findAll();
-                return ExcelHelper.updatesToQueries(queries);
+                return ExcelHelper.queriesToCsv(queries);
             case "faqs":
                 List<Faq> faqs = faqRepository.findAll();
-                return ExcelHelper.updatesToFaqs(faqs);
+                return ExcelHelper.faqsToCsv(faqs);
+            case "allocations":
+                List<Allocation> allocations = allocationRepository.findAll();
+                return ExcelHelper.allocationsToCsv(allocations);
         }
 
         return new ByteArrayInputStream(new ByteArrayOutputStream().toByteArray());

@@ -27,13 +27,16 @@
                 <li class="nav-item">
                     <a id="heading-program-updates" th:class="${activePage == 'program-updates'} ? 'nav-link py-1 px-3 active' : 'nav-link py-1 px-3'" th:href="@{/{activeProgram}/program-updates(activeProgram=${activeProgram})}">Program Updates</a>
                 </li>
+                <li class="nav-item">
+                    <a id="heading-allocations" th:class="${activePage == 'allocations'} ? 'nav-link py-1 px-3 active' : 'nav-link py-1 px-3'" th:href="@{/{activeProgram}/allocations(activeProgram=${activeProgram})}">Allocations</a>
+                </li>
                 <li class="nav-item" th:if="${#lists.contains(#request.userPrincipal.principal.roles, 'ROLE_ADMIN')}">
-                    <a id="heading-admin" th:class="${activePage == 'admin'} ? 'nav-link py-1 px-3 active' : 'nav-link py-1 px-3'" th:href="@{/admin}">Admin</a>
+                    <a id="heading-admin" th:class="${activePage == 'admin'} ? 'nav-link py-1 px-3 active' : 'nav-link py-1 px-3'" th:href="@{/admin/{activeProgram}/(activeProgram=${activeProgram})}">Admin</a>
                 </li>
             </ul>
         </nav>
 
-        <div class="row p-0 m-0 navbar-header">
+        <div class="row p-0 m-0 pt-1 navbar-header">
             <!-- Left -->
             <div class="col-3 navbar-left">
                 <small class="navbar-left-link">
@@ -56,19 +59,19 @@
 
             <!-- Right -->
             <div class="col-3 navbar-right text-right">
-                <small class="navbar-right-link">
+                <span class="navbar-right-link">
                     <a th:href="@{/}" class="feedback-link">Feedback</a>
-                </small>
-                <small class="navbar-right-link">
+                </span>
+                <span class="navbar-right-link">
                     <span id="btn-toggle-theme" class="nav-icon">
                         <i class="fa fa-2x fa-moon"></i><small></small>
                     </span>
-                </small>
-                <small class="navbar-right-link" style="display: inline-block">
+                </span>
+                <span class="navbar-right-link" style="display: inline-block">
                     <form th:action="@{/logout}" method="POST">
                         <button type="submit" name="logout" class="btn btn-sm btn-danger">Logout</button>
                     </form>
-                </small>
+                </span>
             </div>
         </div>
     </div>

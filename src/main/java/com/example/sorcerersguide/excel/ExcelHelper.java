@@ -1,5 +1,6 @@
 package com.example.sorcerersguide.excel;
 
+import com.example.sorcerersguide.model.Allocation;
 import com.example.sorcerersguide.model.Faq;
 import com.example.sorcerersguide.model.Query;
 import com.example.sorcerersguide.model.Update;
@@ -19,6 +20,7 @@ public class ExcelHelper {
     static String[] UPDATE_HEADERS = { "id", "heading", "body", "update_date", "added_by" };
     static String[] QUERIES_HEADERS = { "query_id", "query_link", "query_question", "query_requester", "query_status", "resolver_login", "resolver_response", "created_date", "response_date" };
     static String[] FAQ_HEADERS = { "id", "date", "question", "answer", "is_deprecated" };
+    static String[] ALLOCATION_HEADERS = { "case_id", "asin", "reviewer_id", "manager_id", "is_completed", "comment" };
 
     public static boolean hasCSVFormat(MultipartFile file) {
         return TYPE.equals(file.getContentType())
@@ -110,6 +112,34 @@ public class ExcelHelper {
         }
     }
 
+    public static List<Allocation> csvToAllocations(InputStream is) {
+        try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+             CSVParser csvParser = new CSVParser(fileReader,
+                     CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim())) {
+
+            List<Allocation> allocations = new ArrayList<>();
+
+            Iterable<CSVRecord> csvRecords = csvParser.getRecords();
+
+            for (CSVRecord csvRecord : csvRecords) {
+                Allocation allocation = new Allocation(
+                        csvRecord.get(ALLOCATION_HEADERS[0]),
+                        csvRecord.get(ALLOCATION_HEADERS[1]),
+                        csvRecord.get(ALLOCATION_HEADERS[2]),
+                        csvRecord.get(ALLOCATION_HEADERS[3]),
+                        csvRecord.get(ALLOCATION_HEADERS[4]),
+                        csvRecord.get(ALLOCATION_HEADERS[5])
+                );
+
+                allocations.add(allocation);
+            }
+
+            return allocations;
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to parse CSV file: " + e.getMessage());
+        }
+    }
+
     public static ByteArrayInputStream updatesToCsv(List<Update> updates) {
         final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.MINIMAL);
 
@@ -145,7 +175,7 @@ public class ExcelHelper {
         }
     }
 
-    public static ByteArrayInputStream updatesToQueries(List<Query> queries) {
+    public static ByteArrayInputStream queriesToCsv(List<Query> queries) {
         final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.MINIMAL);
 
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -187,7 +217,8 @@ public class ExcelHelper {
             throw new RuntimeException("Failed to export data to CSV file: " + e.getMessage());
         }
     }
-    public static ByteArrayInputStream updatesToFaqs(List<Faq> faqs) {
+
+    public static ByteArrayInputStream faqsToCsv(List<Faq> faqs) {
         final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.MINIMAL);
 
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -210,6 +241,43 @@ public class ExcelHelper {
                         faq.getQuestion(),
                         faq.getAnswer(),
                         faq.getIsDeprecated()
+                );
+
+                csvPrinter.printRecord(data);
+            }
+
+            csvPrinter.flush();
+            return new ByteArrayInputStream(out.toByteArray());
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to export data to CSV file: " + e.getMessage());
+        }
+    }
+
+    public static ByteArrayInputStream allocationsToCsv(List<Allocation> allocations) {
+        final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.MINIMAL);
+
+        try (ByteArrayOutputStream out = new ByteArrayOutputStream();
+             CSVPrinter csvPrinter = new CSVPrinter(new PrintWriter(out), format)) {
+
+            List<String> header = Arrays.asList(
+                    ALLOCATION_HEADERS[0],
+                    ALLOCATION_HEADERS[1],
+                    ALLOCATION_HEADERS[2],
+                    ALLOCATION_HEADERS[3],
+                    ALLOCATION_HEADERS[4],
+                    ALLOCATION_HEADERS[5]
+            );
+
+            csvPrinter.printRecord(header);
+
+            for (Allocation allocation : allocations) {
+                List<String> data = Arrays.asList(
+                        allocation.getCaseId(),
+                        allocation.getAsin(),
+                        allocation.getReviewerId(),
+                        allocation.getManagerId(),
+                        allocation.getIsCompleted(),
+                        allocation.getComment()
                 );
 
                 csvPrinter.printRecord(data);

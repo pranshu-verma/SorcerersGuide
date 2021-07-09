@@ -1,19 +1,8 @@
-function toMarkup(text) {
-    text = text.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
-    text = text.replace(/__(.*?)__/g, "<u>$1</u>");
-    text = text.replace(/~~(.*?)~~/g, "<i>$1</i>");
-    text = text.replace(/--(.*?)--/g, "<del>$1</del>");
-    text = text.replace(/(?:\r\n|\r|\n)/g, " <br>");
-    text = text.replace(/(?<!!)(https?:\/\/[^\s]+)/g, "<a href='$1'>$1</a>");
-    text = text.replace(/!!(.*?)!!/g, "<img src='$1' style='width:100%;'>");
-    return text;
-}
-
 let query_bodies = document.querySelectorAll(".query-body p");
 let current_page_select = document.getElementById("currentPageSelect");
 
 for (let query_body of query_bodies) {
-    query_body.innerHTML = toMarkup(query_body.textContent);
+    query_body.innerHTML = toMarkdown(query_body.textContent);
 }
 
 

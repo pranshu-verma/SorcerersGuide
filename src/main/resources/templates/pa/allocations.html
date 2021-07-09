@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Home - Sorcerer's Guide</title>
+	<link rel="icon" type="image/svg+xml" th:href="@{/icon/favicon.svg}">
+	<div th:replace="~{common :: header-imports}"></div>
+	<link rel="stylesheet" th:href="@{/css/pa/allocations.css}">
+
+</head>
+
+<body>
+
+	<div th:replace="navigation :: navigation"></div>
+
+	<div id="content" class="container text-center">
+		<h1>Allocations - PA</h1>
+
+		<!-- Each update -->
+		<div class="allocation">
+			<table class="allocations-table">
+				<thead>
+					<tr>
+						<th>Case ID</th>
+						<th>ASIN</th>
+						<th>Reviewer ID</th>
+						<th>Manager ID</th>
+						<th>Is Completed</th>
+						<th>Comment</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="allocation : ${allocations}">
+						<td>[[${allocation.caseId}]]</td>
+						<td>[[${allocation.asin}]]</td>
+						<td>[[${allocation.reviewerId}]]</td>
+						<td>[[${allocation.managerId}]]</td>
+						<td>[[${allocation.isCompleted}]]</td>
+						<td>[[${allocation.comment}]]</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+	<div th:replace="~{common :: footer-imports}"></div>
+
+</body>
+
+</html>

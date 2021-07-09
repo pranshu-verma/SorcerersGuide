@@ -16,10 +16,10 @@
     <div th:replace="navigation :: navigation"></div>
 
     <div id="content" class="container text-center">
-        <a class="mx-3" th:href="@{/admin/updates}">Updates</a>
-        <a class="mx-3" th:href="@{/admin/queries}">Queries</a>
-        <a class="mx-3" th:href="@{/admin/faqs}">FAQs</a>
+        <h1>Checklist - PA</h1>
+        [[${#request.userPrincipal.principal.username}]]
     </div>
+
 
     <div th:replace="~{common :: footer-imports}"></div>
 
