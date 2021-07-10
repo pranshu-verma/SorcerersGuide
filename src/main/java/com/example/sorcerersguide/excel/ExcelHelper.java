@@ -38,7 +38,7 @@ public class ExcelHelper {
 
             for (CSVRecord csvRecord : csvRecords) {
                 Update update = new Update(
-                        Long.parseLong(csvRecord.get(UPDATE_HEADERS[0])),
+                        csvRecord.get(UPDATE_HEADERS[0]),
                         csvRecord.get(UPDATE_HEADERS[1]),
                         csvRecord.get(UPDATE_HEADERS[2]),
                         csvRecord.get(UPDATE_HEADERS[3]),
@@ -96,7 +96,7 @@ public class ExcelHelper {
 
             for (CSVRecord csvRecord : csvRecords) {
                 Faq update = new Faq(
-                        Long.parseLong(csvRecord.get(FAQ_HEADERS[0])),
+                        csvRecord.get(FAQ_HEADERS[0]),
                         csvRecord.get(FAQ_HEADERS[1]),
                         csvRecord.get(FAQ_HEADERS[2]),
                         csvRecord.get(FAQ_HEADERS[3]),

@@ -16,9 +16,8 @@ import javax.persistence.*;
 public class Faq {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true)
-    private Long id;
+    private String id;
     private String date;
     @Column(columnDefinition = "TEXT")
     private String question;

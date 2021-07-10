@@ -12,7 +12,7 @@ function uploadSingleFile(file) {
     formData.append("table", "faqs");
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/admin/upload");
+    xhttp.open("POST", "/admin/pa/upload");
 
     xhttp.onload = function() {
         console.log(xhttp.responseText);

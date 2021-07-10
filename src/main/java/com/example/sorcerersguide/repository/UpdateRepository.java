@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface UpdateRepository extends JpaRepository<Update, Long> {
+public interface UpdateRepository extends JpaRepository<Update, String> {
 
     Page<Update> findByHeadingContainingIgnoreCaseOrBodyContainingIgnoreCaseOrderByIdDesc(String heading, String body, Pageable pageable);
 

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -16,9 +17,8 @@ import javax.persistence.*;
 public class Update {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true)
-    private Long id;
+    private String id;
     @Column(columnDefinition = "TEXT")
     private String heading;
     @Column(columnDefinition = "TEXT")
