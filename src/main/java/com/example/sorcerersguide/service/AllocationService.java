@@ -3,11 +3,10 @@ package com.example.sorcerersguide.service;
 import com.example.sorcerersguide.model.Allocation;
 import com.example.sorcerersguide.repository.AllocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -24,8 +23,17 @@ public class AllocationService {
         allocationRepository.deleteAll();
     }
 
-    public Page<Allocation> findByReviewerId(String reviewerId, Pageable pageable) {
-        return allocationRepository.findByReviewerId(reviewerId, pageable);
+    public List<Allocation> findByReviewerId(String reviewerId) {
+        return allocationRepository.findByReviewerId(reviewerId);
+    }
+
+    public Allocation findByCaseId(String id) {
+        Optional<Allocation> allocation = allocationRepository.findById(id);
+        return allocation.orElse(null);
+    }
+
+    public void saveAllocation(Allocation allocation) {
+        allocationRepository.save(allocation);
     }
 
 }

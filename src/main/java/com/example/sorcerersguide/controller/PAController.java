@@ -11,11 +11,9 @@ import com.example.sorcerersguide.service.UpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -164,18 +162,15 @@ public class PAController {
     }
 
     @GetMapping("/allocations")
-    public ModelAndView allocations(@RequestParam Optional<Integer> currentPage,
-                                    @RequestParam Optional<Integer> pageSize,
-                                    HttpServletRequest request) {
+    public ModelAndView allocations(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
 
         Principal principal = request.getUserPrincipal();
         String username = principal.getName();
         System.out.println("Username: " + username);
 
-        Page<Allocation> allocationList = allocationService.findByReviewerId(username,
-                PageRequest.of(currentPage.orElse(defaultPage) - 1, pageSize.orElse(defaultPageSize)));
-        System.out.println("Allocation length: " + allocationList.getSize());
+        List<Allocation> allocationList = allocationService.findByReviewerId(username);
+        System.out.println("Allocation length: " + allocationList.size());
 
         modelAndView.addObject("activePage", "allocations");
         modelAndView.addObject("activeProgram", "pa");

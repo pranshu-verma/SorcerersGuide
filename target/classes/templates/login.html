@@ -9,7 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="icon" type="image/svg+xml" th:href="@{/icon/favicon.svg}">
-    <div th:replace="~{common :: header-imports}"></div>
+    <link rel="stylesheet" th:href="@{/css/lib/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/lib/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/login.css}">
     <title>Login - Sorcerer's Guide</title>
 
@@ -76,7 +79,11 @@
 
     </div>
 
-    <div th:replace="~{common :: footer-imports}"></div>
+    <script src="/js/lib/jquery.min.js"></script>
+    <script src="/js/lib/bootstrap.min.js"></script>
+    <script src="/js/lib/popper.min.js"></script>
+    <script src="/js/lib/font-awesome.min.js"></script>
+    <script src="/js/theme.js"></script>
 
 </body>
 

@@ -6,8 +6,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AllocationRepository extends JpaRepository<Allocation, Long> {
+import java.util.List;
 
-    Page<Allocation> findByReviewerId(String reviewerId, Pageable pageable);
+public interface AllocationRepository extends JpaRepository<Allocation, String> {
+
+    List<Allocation> findByReviewerId(String reviewerId);
 
 }
