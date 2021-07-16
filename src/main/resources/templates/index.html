@@ -29,20 +29,23 @@
     </div>
 
     <div id="content" class="container text-center">
-        <div class="card-deck">
+        <div class="card-deck mt-5">
             <div class="card bg-warning">
                 <a th:href="@{/pa/}" class="card-body text-center">
                     <p class="card-text">PA</p>
+                    <small class="hidden">Some details about PA?</small>
                 </a>
             </div>
-            <div class="card bg-primary">
-                <a th:href="@{/blc/}" class="card-body text-center">
+            <div class="card disabled">
+                <a tabindex="0" class="card-body text-center" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Brand Level Control" data-content="Some amazing content coming soon... Excited?">
                     <p class="card-text">BLC</p>
+                    <small class="hidden">Some details about BLC?</small>
                 </a>
             </div>
-            <div class="card bg-success">
-                <a th:href="@{/rp/}" class="card-body text-center">
+            <div class="card disabled">
+                <a tabindex="0" class="card-body text-center" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Restricted Products" data-content="Some amazing content coming soon... Excited?">
                     <p class="card-text">RP</p>
+                    <small class="hidden">Some details about RP?</small>
                 </a>
             </div>
         </div>
@@ -50,9 +53,10 @@
 
 	<script src="/js/theme.js"></script>
 	<script src="/js/lib/jquery.min.js"></script>
-	<script src="/js/lib/bootstrap.min.js"></script>
 	<script src="/js/lib/popper.min.js"></script>
+	<script src="/js/lib/bootstrap.min.js"></script>
 	<script src="/js/lib/font-awesome.min.js"></script>
+	<script src="/js/index.js"></script>
 
 </body>
 

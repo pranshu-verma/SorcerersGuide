@@ -94,9 +94,20 @@
     transition: all 0.3s;
 }
 
+.navbar-left-link-disabled {
+    font-size: large;
+    color: var(--color);
+    transition: all 0.3s;
+}
+
 .navbar-left-link a:hover {
     color: var(--navbar-link-hover-color);
     background-color: var(--navbar-link-hover-background-color);
+}
+
+.navbar-left-link-disabled:hover {
+    cursor: pointer;
+    color: var(--color);
 }
 
 .navbar-header {
@@ -112,4 +123,8 @@
     color: var(--color);
     background-color: var(--navbar-link-hover-background-color);
     height: 100%;
+}
+
+.popover  {
+    color: black;
 }

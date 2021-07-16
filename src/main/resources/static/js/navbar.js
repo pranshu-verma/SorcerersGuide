@@ -18,3 +18,11 @@ document.getElementById("content").addEventListener("click", closeNav);
 document.getElementById("side-navbar-btn-close").addEventListener("click", closeNav);
 document.getElementById("side-navbar-btn-open").addEventListener("click", openNav);
 
+
+$(function() {
+    $('[data-toggle="popover"]').popover();
+});
+
+$('.popover-dismiss').popover({
+    trigger: 'focus'
+});

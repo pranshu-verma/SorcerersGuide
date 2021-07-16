@@ -42,11 +42,11 @@
                 <small class="navbar-left-link">
                     <a id="heading-pa" th:class="${activeProgram == 'pa'} ? 'nav-link py-1 px-3 navbar-header-active' : 'nav-link py-1 px-3'" th:href="@{/pa/}">PA</a>
                 </small>
-                <small class="navbar-left-link">
-                    <a id="heading-blc" th:class="${activeProgram == 'blc'} ? 'nav-link py-1 px-3 navbar-header-active' : 'nav-link py-1 px-3'" th:href="@{/blc/}">BLC</a>
+                <small class="navbar-left-link-disabled">
+                    <a id="heading-blc" th:class="${activeProgram == 'blc'} ? 'nav-link py-1 px-3 navbar-header-active' : 'nav-link py-1 px-3'" tabindex="0" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Brand Level Control" data-content="Some amazing content coming soon... Excited?">BLC</a>
                 </small>
-                <small class="navbar-left-link">
-                    <a id="heading-rp" th:class="${activeProgram == 'rp'} ? 'nav-link py-1 px-3 navbar-header-active' : 'nav-link py-1 px-3'" th:href="@{/rp/}">RP</a>
+                <small class="navbar-left-link-disabled">
+                    <a id="heading-rp" th:class="${activeProgram == 'rp'} ? 'nav-link py-1 px-3 navbar-header-active' : 'nav-link py-1 px-3'" tabindex="0" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Restricted Products" data-content="Some amazing content coming soon... Excited?">RP</a>
                 </small>
             </div>
 

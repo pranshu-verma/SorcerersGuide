@@ -116,29 +116,46 @@
             <div class="card bg-warning">
                 <a href="" class="card-body text-center">
                     <p class="card-text">PA</p>
+                    <small class="hidden">Some details about PA?</small>
                 </a>
             </div>
-            <div class="card bg-success">
-                <div class="card-body text-center">
-                    <p class="card-text">BLC</p>
-                </div>
+            <div class="card">
+                <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
             </div>
-            <div class="card bg-danger">
-                <div class="card-body text-center">
+            <div class="card">
+                <div class="card-body text-center disabled">
                     <p class="card-text">RP</p>
                 </div>
             </div>
+
+            <span class="d-inline-block" data-toggle="popover" data-content="Disabled popover">
+                <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled>Disabled button</button>
+              </span>
+              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+                Tooltip on top
+              </button>
         </div>
+
     </div>
+
+    <form action="/action_page.php">
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname" disabled></input><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname" disabled><br></input><br>
+        <input type="button" id="edit" value="Edit">
+        <input type="submit" id="submit" value="Submit">
+    </form>
 
 
     <div th:replace="~{common :: footer-imports}"></div>
     <script src="/src/main/resources/static/js/lib/jquery.min.js"></script>
-    <script src="/src/main/resources/static/js/lib/bootstrap.min.js"></script>
     <script src="/src/main/resources/static/js/lib/popper.min.js"></script>
+    <script src="/src/main/resources/static/js/lib/bootstrap.min.js"></script>
     <script src="/src/main/resources/static/js/lib/font-awesome.min.js"></script>
     <script src="/src/main/resources/static/js/theme.js"></script>
     <script src="/src/main/resources/static/js/navbar.js"></script>
+    <script src="/src/main/resources/static/js/test.js"></script>
 
 </body>
 
