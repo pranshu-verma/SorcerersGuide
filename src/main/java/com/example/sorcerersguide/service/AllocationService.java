@@ -23,8 +23,12 @@ public class AllocationService {
         allocationRepository.deleteAll();
     }
 
-    public List<Allocation> findByReviewerId(String reviewerId) {
-        return allocationRepository.findByReviewerId(reviewerId);
+    public List<Allocation> findByReviewerIdAndDate(String reviewerId, String date) {
+        return allocationRepository.findByReviewerIdAndDate(reviewerId, date);
+    }
+
+    public List<Allocation> findByReviewerIdAndDateAndIsCompleted(String reviewerId, String date, String isCompleted) {
+        return allocationRepository.findByReviewerIdAndDateAndIsCompleted(reviewerId, date, isCompleted);
     }
 
     public Allocation findByCaseId(String id) {

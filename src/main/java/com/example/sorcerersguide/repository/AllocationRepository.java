@@ -10,6 +10,8 @@ import java.util.List;
 
 public interface AllocationRepository extends JpaRepository<Allocation, String> {
 
-    List<Allocation> findByReviewerId(String reviewerId);
+    List<Allocation> findByReviewerIdAndDate(String reviewerId, String date);
+
+    List<Allocation> findByReviewerIdAndDateAndIsCompleted(String reviewerId, String date, String isCompleted);
 
 }

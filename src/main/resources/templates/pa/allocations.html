@@ -18,6 +18,11 @@
 
 	<div id="content" class="container text-center">
 		<h1>Allocations - PA</h1>
+		<form action="" method="GET">
+			<input type="date" placeholder="dd-mm-yyyy" name="date" id="date" th:value="${date}">
+<!--			<input type="checkbox" th:value="${isCompleted}" name="isCompleted">-->
+			<button type="submit">Submit</button>
+		</form>
 
 		<!-- Each update -->
 		<div class="allocation">
@@ -28,6 +33,7 @@
 						<th>ASIN</th>
 						<th>Reviewer ID</th>
 						<th>Manager ID</th>
+						<th>Date</th>
 						<th>Is Completed</th>
 						<th>Comment</th>
 					</tr>
@@ -38,6 +44,7 @@
 						<td>[[${allocation.asin}]]</td>
 						<td>[[${allocation.reviewerId}]]</td>
 						<td>[[${allocation.managerId}]]</td>
+						<td>[[${allocation.date}]]</td>
 						<td>[[${allocation.isCompleted}]]</td>
 						<td>[[${allocation.comment}]]</td>
 					</tr>

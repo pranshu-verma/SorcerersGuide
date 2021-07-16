@@ -20,7 +20,7 @@ public class ExcelHelper {
     static String[] UPDATE_HEADERS = { "id", "heading", "body", "update_date", "added_by" };
     static String[] QUERIES_HEADERS = { "query_id", "query_link", "query_question", "query_requester", "query_status", "resolver_login", "resolver_response", "created_date", "response_date" };
     static String[] FAQ_HEADERS = { "id", "date", "question", "answer", "is_deprecated" };
-    static String[] ALLOCATION_HEADERS = { "case_id", "asin", "reviewer_id", "manager_id", "is_completed", "comment" };
+    static String[] ALLOCATION_HEADERS = { "case_id", "asin", "reviewer_id", "manager_id", "date", "is_completed", "comment" };
 
     public static boolean hasCSVFormat(MultipartFile file) {
         return TYPE.equals(file.getContentType())
@@ -128,7 +128,8 @@ public class ExcelHelper {
                         csvRecord.get(ALLOCATION_HEADERS[2]),
                         csvRecord.get(ALLOCATION_HEADERS[3]),
                         csvRecord.get(ALLOCATION_HEADERS[4]),
-                        csvRecord.get(ALLOCATION_HEADERS[5])
+                        csvRecord.get(ALLOCATION_HEADERS[5]),
+                        csvRecord.get(ALLOCATION_HEADERS[6])
                 );
 
                 allocations.add(allocation);
@@ -265,7 +266,8 @@ public class ExcelHelper {
                     ALLOCATION_HEADERS[2],
                     ALLOCATION_HEADERS[3],
                     ALLOCATION_HEADERS[4],
-                    ALLOCATION_HEADERS[5]
+                    ALLOCATION_HEADERS[5],
+                    ALLOCATION_HEADERS[6]
             );
 
             csvPrinter.printRecord(header);

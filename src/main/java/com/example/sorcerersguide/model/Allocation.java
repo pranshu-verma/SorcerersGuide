@@ -21,6 +21,7 @@ public class Allocation {
     private String asin;
     private String reviewerId;
     private String managerId;
+    private String date;
     private String isCompleted;
     @Column(columnDefinition = "TEXT")
     private String comment;

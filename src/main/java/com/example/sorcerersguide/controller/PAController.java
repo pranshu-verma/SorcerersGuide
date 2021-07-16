@@ -20,7 +20,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @Controller
@@ -162,18 +165,22 @@ public class PAController {
     }
 
     @GetMapping("/allocations")
-    public ModelAndView allocations(HttpServletRequest request) {
+    public ModelAndView allocations(HttpServletRequest request,
+                                    @RequestParam Optional<String> date) {
         ModelAndView modelAndView = new ModelAndView();
 
         Principal principal = request.getUserPrincipal();
         String username = principal.getName();
+        List<Allocation> allocationList;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dateToday = dateFormat.format(new Date());
         System.out.println("Username: " + username);
-
-        List<Allocation> allocationList = allocationService.findByReviewerId(username);
+        allocationList = allocationService.findByReviewerIdAndDate(username, date.orElse(dateToday));
         System.out.println("Allocation length: " + allocationList.size());
 
         modelAndView.addObject("activePage", "allocations");
         modelAndView.addObject("activeProgram", "pa");
+        modelAndView.addObject("date", date.orElse(dateToday));
         modelAndView.addObject("allocations", allocationList);
         modelAndView.setViewName(prefixFolder + "allocations");
         return modelAndView;
