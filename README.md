@@ -2,12 +2,13 @@
 
 *Process Management Website*
 
+**Note**: As of 16th July 2020, this project will be developed as an Amazon's internal website and further commit's will be made available to Amazon's GitHub repository.
+
 ## Table of contents
 * [Introduction](#introduction)
 * [Goal and Objectives](#goal-and-objectives)
 * [Features](#features)
 
-**Note**: As of 16th July 2020, this project will be developed as an Amazon's internal website and further commit's will be made available to Amazon's GitHub repository.
 
 ## Introduction
 When doing a task, one might have several questions on how to proceed. What if we had a tool which could provide all the necessary answers to the user? What if we could get all the necessary information in which we might be interested in? Since the updates come every week, it is difficult to keep track of the ones which are ongoing and which are outdated. Imagine the amount of time we could save if we had a powerful tool which could give us the all the information at one glance. This tool provides the SOP updates, FAQs, queries and checklist at a single place for any process onboarded.
