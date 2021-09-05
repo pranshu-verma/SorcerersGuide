@@ -2,7 +2,7 @@
 
 *Process Management Website*
 
-**Note**: As of 16th July 2020, this project will be developed as an Amazon's internal website and further commit's will be made available to Amazon's GitHub repository.
+**Note**: As of 16th July 2020, this project will be developed as an Amazon's internal website and further commits will be made available to Amazon's GitHub repository.
 
 ## Table of contents
 * [Introduction](#introduction)
